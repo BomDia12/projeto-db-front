@@ -45,3 +45,5 @@ export interface Report {
     id_avaliacao?: string;
     id_estudante?: string;
 }
+
+export type Selectables = Teacher | Department | Subject

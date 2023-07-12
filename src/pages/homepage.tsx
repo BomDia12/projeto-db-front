@@ -1,11 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Button, Content, ElementList, Title } from "../components";
 
 const Homepage = () => {
+  const navigate = useNavigate();
+
   return (
-    <div>
-      Homepage
-      <Link to='/students' >Estudantes</Link>
-    </div>
+    <Content>
+      <Title>Bem Vindo ao sistema de Avalição de Professores</Title>
+      <ElementList hastitle >
+        <Button label="Estudantes" onClick={() => navigate('/students')} width="20vw" />
+        <Button label="Departamentos" onClick={() => navigate('/departments')} width="20vw" />
+        <Button label="Estudantes" onClick={() => navigate('/students')} width="20vw" />
+      </ElementList>
+    </Content>
   )
 }
 

@@ -5,3 +5,5 @@ export {default as ElementList} from './ElementList';
 export {default as ListItem} from './ListItem';
 export {default as Button} from './Button';
 export {default as Link} from './Link'
+export {default as GenericIndex} from './GenericIndex'
+export {default as Select} from './Select'

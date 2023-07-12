@@ -3,7 +3,10 @@ import Homepage from "../pages/homepage";
 import StudentsIndex from "../pages/Students";
 import StudentView from "../pages/Students/Student";
 import CreateStudent from "../pages/Students/Create";
-import { getAllStudents, getStudentById } from "../utils/requests";
+import { getAllDepartments, getAllStudents, getDepartmentById, getStudentById } from "../utils/requests";
+import DepartmentIndex from "../pages/Departments";
+import DepartmentView from "../pages/Departments/Department";
+import CreateDepartment from "../pages/Departments/Create";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +30,25 @@ const router = createBrowserRouter([
   {
     path: '/students/create',
     element: <CreateStudent />
-  }
+  },
+  {
+    path: '/departments',
+    element: <DepartmentIndex />,
+    loader: async () => {
+      return await getAllDepartments();
+    }
+  },
+  {
+    path: '/departments/:id',
+    element: <DepartmentView />,
+    loader: async ({ params }) => {
+      return await getDepartmentById(params.id as string);
+    }
+  },
+  {
+    path: '/departments/create',
+    element: <CreateDepartment />
+  },
 ])
 
 const Router = () => <RouterProvider router={router} />
