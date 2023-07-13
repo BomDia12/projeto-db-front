@@ -12,7 +12,7 @@ const DepartmentView = () => {
       <ElementList hastitle>
         <ListItem>Nome: {departmentData?.nome}</ListItem>
         <Button width="20vw" label="Voltar" onClick={() => navigate(-1)} style={{ 'marginBottom': 0 }} />
-        <Button width="20vw" label="Editar usuário" onClick={() => navigate(`/department/${departmentData.id as string}/edit`)} />
+        <Button width="20vw" label="Editar departamento" onClick={() => navigate(`/departments/${departmentData.id as string}/edit`)} />
       </ElementList>
     </Content>
   )

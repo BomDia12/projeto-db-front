@@ -3,10 +3,16 @@ import Homepage from "../pages/homepage";
 import StudentsIndex from "../pages/Students";
 import StudentView from "../pages/Students/Student";
 import CreateStudent from "../pages/Students/Create";
-import { getAllDepartments, getAllStudents, getDepartmentById, getStudentById } from "../utils/requests";
+import { getAllDepartments, getAllStudents, getAllTeachers, getDepartmentById, getStudentById, getTeacherById } from "../utils/requests";
 import DepartmentIndex from "../pages/Departments";
 import DepartmentView from "../pages/Departments/Department";
 import CreateDepartment from "../pages/Departments/Create";
+import TeacherIndex from "../pages/Teachers";
+import TeacherView from "../pages/Teachers/Teacher";
+import CreateTeacher from "../pages/Teachers/Create";
+import UpdateStudent from "../pages/Students/Edit";
+import EditTeacher from "../pages/Teachers/Edit";
+import EditDepartment from "../pages/Departments/Edit";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +38,13 @@ const router = createBrowserRouter([
     element: <CreateStudent />
   },
   {
+    path: '/students/:id/edit',
+    element: <UpdateStudent />,
+    loader: async ({ params }) => {
+      return await getStudentById(params.id);
+    }
+  },
+  {
     path: '/departments',
     element: <DepartmentIndex />,
     loader: async () => {
@@ -46,8 +59,43 @@ const router = createBrowserRouter([
     }
   },
   {
+    path: '/departments/:id/edit',
+    element: <EditDepartment />,
+    loader: async ({ params }) => {
+      return await getDepartmentById(params.id as string);
+    }
+  },
+  {
     path: '/departments/create',
     element: <CreateDepartment />
+  },
+  {
+    path: '/teachers',
+    element: <TeacherIndex />,
+    loader: async () => {
+      return await getAllTeachers();
+    }
+  },
+  {
+    path: '/teachers/:id',
+    element: <TeacherView />,
+    loader: async ({ params }) => {
+      return await getTeacherById(params.id as string);
+    }
+  },
+  {
+    path: '/teachers/:id/edit',
+    element: <EditTeacher />,
+    loader: async ({ params }) => {
+      return await getTeacherById(params.id as string);
+    }
+  },
+  {
+    path: '/teachers/create',
+    element: <CreateTeacher />,
+    loader: async () => {
+      return await getAllDepartments();
+    }
   },
 ])
 

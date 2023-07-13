@@ -10,7 +10,7 @@ const Homepage = () => {
       <ElementList hastitle >
         <Button label="Estudantes" onClick={() => navigate('/students')} width="20vw" />
         <Button label="Departamentos" onClick={() => navigate('/departments')} width="20vw" />
-        <Button label="Estudantes" onClick={() => navigate('/students')} width="20vw" />
+        <Button label="Professores" onClick={() => navigate('/teachers')} width="20vw" />
       </ElementList>
     </Content>
   )

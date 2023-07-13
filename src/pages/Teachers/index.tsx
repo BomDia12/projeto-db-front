@@ -1,13 +1,13 @@
 import { GenericIndex } from '../../components'
 
-const DepartmentIndex = () => {
+const TeacherIndex = () => {
   return (
     <GenericIndex
-      title='Departamentos'
-      route='departments'
-      buttonText='Criar um novo departamento'
+      title='Professores'
+      route='teachers'
+      buttonText='Criar um novo professor'
     />
   )
 }
 
-export default DepartmentIndex;
+export default TeacherIndex;

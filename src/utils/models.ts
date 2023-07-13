@@ -2,7 +2,7 @@ export interface Student {
     id?: string;
     email: string;
     nome?: string;
-    senha: string;
+    senha?: string;
     curso?: string;
 }
 
@@ -47,3 +47,8 @@ export interface Report {
 }
 
 export type Selectables = Teacher | Department | Subject
+
+export interface Option {
+    value: string;
+    label: string;
+}

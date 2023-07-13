@@ -4,8 +4,8 @@ const StudentsIndex = () => {
   return (
     <GenericIndex
       title='Alunos'
-      route='/students'
-      buttonText="criar um novo aluno"
+      route='students'
+      buttonText="Criar um novo aluno"
     />
   )
 }

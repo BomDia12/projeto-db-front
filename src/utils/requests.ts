@@ -35,6 +35,15 @@ export const createStudent = async (student: Student) => {
   alert('Aluno criado com sucesso')
 };
 
+export const updateStudent = async (student: Student) => {
+  try {
+    await api.put('/students', student)
+    alert('Aluno editado com sucesso')
+  } catch(e) {
+    alert(e)
+  }
+};
+
 export const getAllDepartments = async () => {
   const data = await api.get('/departments');
 
@@ -67,6 +76,15 @@ export const createDepartment = async (department: Department) => {
   alert('Department criado com sucesso')
 };
 
+export const updateDepartment = async (department: Department) => {
+  try {
+    await api.put('/departments', department)
+    alert('Departamento editado com sucesso')
+  } catch(e) {
+    alert(e)
+  }
+};
+
 export const getAllTeachers = async () => {
   const data = await api.get('/teachers');
 
@@ -92,9 +110,19 @@ export const getTeacherById = async (id: string) => {
 }
 
 export const createTeacher = async (teacher: Teacher) => {
-  await api.post('/teachers', teacher).catch(error => {
+  try{
+    await api.post('/teachers', teacher)
+    alert('Professor criado com sucesso')
+  } catch (error) {
     return alert(error)
-  });
+  }
+};
 
-  alert('Professor criado com sucesso')
+export const updateTeacher = async (teacher: Teacher) => {
+  try {
+    await api.put('/teachers', teacher)
+    alert('Professor editado com sucesso')
+  } catch(e) {
+    alert(e)
+  }
 };
