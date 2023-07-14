@@ -1,6 +1,6 @@
 import { redirect } from "react-router-dom";
 import { api } from "./api";
-import { Department, Student, Teacher } from "./models";
+import { Department, Student, Teacher, TeacherReviews } from "./models";
 import { isEmpty } from "lodash";
 
 export const getAllStudents = async () => {
@@ -122,6 +122,14 @@ export const updateTeacher = async (teacher: Teacher) => {
   try {
     await api.put('/teachers', teacher)
     alert('Professor editado com sucesso')
+  } catch(e) {
+    alert(e)
+  }
+};
+
+export const getTeachersReviews = async (id: string) => {
+  try {
+    return await api.get(`/teachers/${id}/reviews`) as TeacherReviews[];
   } catch(e) {
     alert(e)
   }

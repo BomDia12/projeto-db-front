@@ -16,6 +16,7 @@ export interface Teacher {
     email?: string;
     nome?: string;
     id_departamento?: string;
+    nota?: number;
 }
 
 export interface Subject {
@@ -51,4 +52,11 @@ export type Selectables = Teacher | Department | Subject
 export interface Option {
     value: string;
     label: string;
+}
+
+export interface TeacherReviews {
+    id: string;
+    nome_professor?: string;
+    nota?: number;
+    descricao?: string;
 }

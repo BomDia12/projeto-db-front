@@ -3,7 +3,7 @@ import Homepage from "../pages/homepage";
 import StudentsIndex from "../pages/Students";
 import StudentView from "../pages/Students/Student";
 import CreateStudent from "../pages/Students/Create";
-import { getAllDepartments, getAllStudents, getAllTeachers, getDepartmentById, getStudentById, getTeacherById } from "../utils/requests";
+import { getAllDepartments, getAllStudents, getAllTeachers, getDepartmentById, getStudentById, getTeacherById, getTeachersReviews } from "../utils/requests";
 import DepartmentIndex from "../pages/Departments";
 import DepartmentView from "../pages/Departments/Department";
 import CreateDepartment from "../pages/Departments/Create";
@@ -13,6 +13,7 @@ import CreateTeacher from "../pages/Teachers/Create";
 import UpdateStudent from "../pages/Students/Edit";
 import EditTeacher from "../pages/Teachers/Edit";
 import EditDepartment from "../pages/Departments/Edit";
+import TeacherReviews from "../pages/Teachers/TeacherReviews";
 
 const router = createBrowserRouter([
   {
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
     path: '/students/:id/edit',
     element: <UpdateStudent />,
     loader: async ({ params }) => {
-      return await getStudentById(params.id);
+      return await getStudentById(params.id as string);
     }
   },
   {
@@ -91,10 +92,10 @@ const router = createBrowserRouter([
     }
   },
   {
-    path: '/teachers/create',
-    element: <CreateTeacher />,
-    loader: async () => {
-      return await getAllDepartments();
+    path: '/teachers/:id/reviews',
+    element: <TeacherReviews />,
+    loader: async ({ params }) => {
+      return await getTeachersReviews(params.id as string);
     }
   },
 ])
