@@ -1,6 +1,5 @@
-import { redirect } from "react-router-dom";
 import { api } from "./api";
-import { Department, Student, Teacher, TeacherReviews } from "./models";
+import { Department, ReportReview, Student, Teacher } from "./models";
 import { isEmpty } from "lodash";
 
 export const getAllStudents = async () => {
@@ -129,8 +128,67 @@ export const updateTeacher = async (teacher: Teacher) => {
 
 export const getTeachersReviews = async (id: string) => {
   try {
-    return await api.get(`/teachers/${id}/reviews`) as TeacherReviews[];
+    return (await api.get(`/teachers/${id}/reviews`)).data;
   } catch(e) {
     alert(e)
   }
 };
+
+export const getAllClasses = async () => {
+  try {
+    return (await api.get('/classes')).data;
+  } catch(e) {
+    alert(e)
+  }
+}
+
+export const getClassReviews = async (id: string) => {
+  try {
+    return (await api.get(`/classes/${id}/reviews`)).data;
+  } catch(e) {
+    alert(e)
+  }
+}
+
+export const checkLogin = async (email: string, password: string) => {
+  try {
+    return (await api.post('login', { email, password })).data;
+  } catch(e) {
+    alert(e)
+  }
+}
+
+export const getAllReports = async () => {
+  try {
+    return (await api.get('/reports')).data as ReportReview[];
+  } catch (e) {
+    alert(e);
+  }
+}
+
+export const acceptReport = async (reviewId: string) => {
+  try {
+    await api.get(`/reports/${reviewId}/accept-report`);
+    alert('Denuncia Aceita')
+  } catch (e) {
+    alert(e);
+  }
+}
+
+export const refuseReport = async (reportId: string) => {
+  try {
+    await api.delete(`/reports/${reportId}`)
+    alert('Denuncia deletada')
+  } catch (e) {
+    alert(e)
+  }
+}
+
+export const reportReview = async (reviewId: string, userId: string) => {
+  try {
+    await api.post('/reports', { id_avaliacao: reviewId, id_estudante: userId })
+    alert('Mensagem denunciada! Um Admin vai conferi-la.')
+  } catch(e) {
+    alert(e)
+  }
+}

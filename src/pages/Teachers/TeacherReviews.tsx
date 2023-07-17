@@ -1,9 +1,11 @@
-import { useLoaderData } from "react-router-dom"
+import { useLoaderData, useNavigate } from "react-router-dom"
 import { TeacherReviews as Reviews } from "../../utils/models"
-import { Content, ElementList, ListItem, Title } from "../../components";
+import { Button, Content, ElementList, ListItem, Title } from "../../components";
 
 const TeacherReviews = () => {
   const reviews = useLoaderData() as Reviews[];
+  const navigate = useNavigate();
+  console.log(reviews);
 
   return (
     <Content>
@@ -13,6 +15,7 @@ const TeacherReviews = () => {
           <ListItem>nota: {review.nota}; Descrição: {review.descricao}</ListItem>
         )
         }
+        <Button label="Voltar" onClick={() => navigate(-1)} width="20vw" />
       </ElementList>
     </Content>
   )

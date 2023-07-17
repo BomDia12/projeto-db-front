@@ -1,9 +1,8 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Homepage from "../pages/homepage";
 import StudentsIndex from "../pages/Students";
 import StudentView from "../pages/Students/Student";
 import CreateStudent from "../pages/Students/Create";
-import { getAllDepartments, getAllStudents, getAllTeachers, getDepartmentById, getStudentById, getTeacherById, getTeachersReviews } from "../utils/requests";
+import { getAllClasses, getAllDepartments, getAllReports, getAllStudents, getAllTeachers, getClassReviews, getDepartmentById, getStudentById, getTeacherById, getTeachersReviews } from "../utils/requests";
 import DepartmentIndex from "../pages/Departments";
 import DepartmentView from "../pages/Departments/Department";
 import CreateDepartment from "../pages/Departments/Create";
@@ -14,11 +13,15 @@ import UpdateStudent from "../pages/Students/Edit";
 import EditTeacher from "../pages/Teachers/Edit";
 import EditDepartment from "../pages/Departments/Edit";
 import TeacherReviews from "../pages/Teachers/TeacherReviews";
+import ClassesIndex from "../pages/Classes";
+import ClassView from "../pages/Classes/Class";
+import Main from "../pages";
+import ReportList from "../pages/Reports";
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Homepage />
+    element: <Main />
   },
   {
     path: '/students',
@@ -92,10 +95,38 @@ const router = createBrowserRouter([
     }
   },
   {
+    path: '/teachers/:id/create',
+    element: <CreateTeacher />,
+    loader: async ({ params }) => {
+      return await getTeacherById(params.id as string);
+    }
+  },
+  {
     path: '/teachers/:id/reviews',
     element: <TeacherReviews />,
     loader: async ({ params }) => {
       return await getTeachersReviews(params.id as string);
+    }
+  },
+  {
+    path: '/classes',
+    element: <ClassesIndex />,
+    loader: async () => {
+      return await getAllClasses();
+    }
+  },
+  {
+    path: '/classes/:id',
+    element: <ClassView />,
+    loader: async ({ params }) => {
+      return await getClassReviews(params.id as string);
+    }
+  },
+  {
+    path: '/reports',
+    element: <ReportList />,
+    loader: async () => {
+      return await getAllReports();
     }
   },
 ])

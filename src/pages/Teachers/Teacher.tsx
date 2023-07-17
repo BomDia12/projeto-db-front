@@ -15,7 +15,8 @@ const TeacherView = () => {
         <ListItem>Id departamento: {teacherData?.id_departamento}</ListItem>
         <ListItem>Nota média: {teacherData?.nota}</ListItem>
         <Button width="20vw" label="Voltar" onClick={() => navigate(-1)} style={{ 'marginBottom': 0 }} />
-        <Button width="20vw" label="Editar Professor" onClick={() => navigate(`/teachers/${teacherData.id as string}/edit`)} />
+        <Button width="20vw" label="Editar Professor" onClick={() => navigate(`/teachers/${teacherData.id as string}/edit`)} style={{ 'marginBottom': 0 }} />
+        <Button width="20vw" label="Ver Avaliações" onClick={() => navigate(`/teachers/${teacherData.id as string}/reviews`)} />
       </ElementList>
     </Content>
   )
